@@ -8,7 +8,7 @@ class Player:
         self.inventory = inventory
 
     def move(self, direction):
-        invalid = "There is nothing in that direction, please go another way.\n"
+        invalid = "There is nothing in that direction, please go another way."
         if direction == 'n':
             if self.location.n_to:
                self.location = self.location.n_to

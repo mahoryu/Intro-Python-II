@@ -61,9 +61,10 @@ while user_input != 'q':
 
     if user_input in ['n','s','e','w']:
         player.move(user_input)
-    elif user_input == 'i':
+    elif user_input == 'i' or user_input == 'inventory':
         player.list_inventory()
     elif user_input == 'q':
-        print("\nThank you for playing!")
+        print("Thank you for playing!")
     else:
-        print("\nInvalid Input, please try again.\n")
+        print("Invalid Input, please try again.")
+    print()
