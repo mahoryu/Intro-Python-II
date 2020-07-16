@@ -52,22 +52,16 @@ player = Player("Bob", room['outside'])
 #
 # If the user enters "q", quit the game.
 
-direction = ""
+user_input = ""
 invalid = "There is nothing in that direction, please go another way."
 
-while direction != 'q':
+while user_input != 'q':
     print(player.location)
-    direction = input()
+    user_input = input(":").lower()
 
-    if direction == 'n':
-        player.set_location(player.location.n_to) if player.location.n_to else print(invalid)
-    elif direction == 's':
-        player.set_location(player.location.s_to) if player.location.s_to else print(invalid)
-    elif direction == 'e':
-        player.set_location(player.location.e_to) if player.location.e_to else print(invalid)
-    elif direction == 'w':
-        player.set_location(player.location.w_to) if player.location.w_to else print(invalid)
-    elif direction == 'q':
+    if user_input in ['n','s','e','w']:
+        player.move(user_input)
+    elif user_input == 'q':
         print("\nThank you for playing!")
     else:
         print("\nInvalid Input, please enter 'n','s','e','w', or 'q'.\n")
