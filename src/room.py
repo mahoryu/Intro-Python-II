@@ -1,10 +1,10 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 class Room:
-    def __init__(self, name, description, item = []):
+    def __init__(self, name, description, items = []):
         self.name = name
         self.description = description
-        self.item = item
+        self.items = items
         self.n_to = False
         self.s_to = False
         self.e_to = False
@@ -14,13 +14,17 @@ class Room:
         return f"{self.name}\n{self.description}"
 
     def remove_item(self, item):
-        self.item.remove(item)
-        self.item.sort()
+        self.items.remove(item)
+        self.items.sort()
 
-    def list_item(self):
-        for i, item in enumerate(self.item):
-            print(f"{i+1}. {item}")
+    def list_items(self):
+        if len(self.items) < 1:
+            print("There is nothing to see here.")
+        else:
+            print("You look around and find the below items:")
+            for item in self.items:
+                print(f"  {item}")
 
     def drop_item(self, item):
-        self.item.remove(item)
-        self.item.sort()
+        self.items.append(item)
+        self.items.sort()

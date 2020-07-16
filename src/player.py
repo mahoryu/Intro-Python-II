@@ -31,13 +31,21 @@ class Player:
                 print(invalid)
 
     def get_item(self, item):
-        self.inventory.append(item)
-        self.inventory.sort()
+        for i in self.location.items:
+            if i.name == item:
+                self.inventory.append(i)
+                self.location.remove_item(i)
+                i.on_take()
+            else:
+                print(f"You look around but there is no {item.name} in sight")
 
     def list_inventory(self):
-        print("Your Inventory:")
-        for i, item in enumerate(self.inventory):
-            print(f"{i+1}. {item}")
+        if len(self.inventory) < 1:
+            print("You are not carrying anything")
+        else:
+            print("Your Inventory:")
+            for item in self.inventory:
+                print(f"  {item}")
 
     def remove_item(self, item):
         self.inventory.remove(item)

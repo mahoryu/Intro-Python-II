@@ -1,11 +1,13 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     [Item("stick", "It's a stick.")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -53,18 +55,32 @@ player = Player("Bob", room['outside'])
 # If the user enters "q", quit the game.
 
 user_input = ""
-invalid = "There is nothing in that direction, please go another way."
+bad_input = "Invalid Input, please try again."
 
 while user_input != 'q':
     print(player.location)
     user_input = input(":").lower()
 
-    if user_input in ['n','s','e','w']:
-        player.move(user_input)
-    elif user_input == 'i' or user_input == 'inventory':
-        player.list_inventory()
-    elif user_input == 'q':
-        print("Thank you for playing!")
+    if " " in user_input:
+        verb, noun = user_input.split(" ", 1)
+        no_noun = False
     else:
-        print("Invalid Input, please try again.")
+        no_noun = True
+
+    if no_noun:
+        if user_input in ['n','s','e','w']:
+            player.move(user_input)
+        elif user_input == 'i' or user_input == 'inventory':
+            player.list_inventory()
+        elif user_input == 'l' or user_input == 'look':
+            player.location.list_items()
+        elif user_input == 'q':
+            print("Thank you for playing!")
+        else:
+            print(bad_input)
+    else:
+        if verb == 'get':
+            player.get_item(noun)
+        else:
+            print(bad_input)
     print()
