@@ -15,14 +15,18 @@ passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+                    [Item("Rope", "A length of rope that you found tied to edge of the chasm")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+                    [Item("Coin", "A single coin of the realm's current currency.")]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Room("Treasure Chamber", """"You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+                    [Item("SmallKey","A key so small it's a wonder you even noticed it, it may unlock something important."),
+                     Item("Cheese","It looks like someone has taken a bite out of it.")]),
 }
 
 
@@ -41,8 +45,15 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+print("Welcome, adventurer,")
+player_name = input("Pray tell, what is your name?\n")
+
 # Make a new player object that is currently in the 'outside' room.
-player = Player("Bob", room['outside'])
+player = Player(player_name, room['outside'])
+
+print(f"Welcome brave {player.name}!\nWelcome to the land of Ardamesia, \
+a land of mystery and intregue.\nAre you ready to get started?\n\
+Your adventure awaits!\n")
 
 # Write a loop that:
 #
