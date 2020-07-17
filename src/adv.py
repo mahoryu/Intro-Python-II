@@ -57,7 +57,7 @@ player = Player("Bob", room['outside'])
 user_input = ""
 bad_input = "Invalid Input, please try again."
 
-while user_input != 'q':
+while user_input != 'q' and user_input != "quit":
     print(player.location)
     user_input = input(":").lower()
 
@@ -74,13 +74,15 @@ while user_input != 'q':
             player.list_inventory()
         elif user_input == 'l' or user_input == 'look':
             player.location.list_items()
-        elif user_input == 'q':
+        elif user_input == 'q' or user_input == "quit":
             print("Thank you for playing!")
         else:
             print(bad_input)
     else:
         if verb == 'get':
             player.get_item(noun)
+        elif verb == 'drop':
+            player.drop_item(noun)
         else:
             print(bad_input)
     print()

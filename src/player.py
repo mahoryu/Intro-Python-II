@@ -34,19 +34,24 @@ class Player:
         for i in self.location.items:
             if i.name == item:
                 self.inventory.append(i)
-                self.location.remove_item(i)
+                self.location.get_item(i)
                 i.on_take()
             else:
-                print(f"You look around but there is no {item.name} in sight")
+                print(f"You look around but there is no {i.name} in sight")
 
     def list_inventory(self):
         if len(self.inventory) < 1:
-            print("You are not carrying anything")
+            print("You are not currently carrying anything")
         else:
             print("Your Inventory:")
             for item in self.inventory:
-                print(f"  {item}")
+                print(f" {item}")
 
-    def remove_item(self, item):
-        self.inventory.remove(item)
-        self.inventory.sort()
+    def drop_item(self, item):
+        for i in self.inventory:
+            if i.name == item:
+                self.inventory.remove(i)
+                self.location.drop_item(i)
+                i.on_drop
+            else:
+                print(f"You do not currently have a(n) {i.name} in your inventory.")
