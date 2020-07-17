@@ -31,13 +31,18 @@ class Player:
                 print(invalid)
 
     def get_item(self, item):
+        selection = None
         for i in self.location.items:
-            if i.name == item:
-                self.inventory.append(i)
-                self.location.get_item(i)
-                i.on_take()
+            if i.name.lower() == item:
+                selection = i
             else:
-                print(f"You look around but there is no {i.name} in sight")
+                continue
+        if selection != None:
+            self.inventory.append(selection)
+            self.location.get_item(selection)
+            selection.on_take()
+        else:
+            print(f"You look around but there is no {item} in sight")
 
     def list_inventory(self):
         if len(self.inventory) < 1:
@@ -48,10 +53,15 @@ class Player:
                 print(f" {item}")
 
     def drop_item(self, item):
+        selection = None
         for i in self.inventory:
-            if i.name == item:
-                self.inventory.remove(i)
-                self.location.drop_item(i)
-                i.on_drop
+            if i.name.lower() == item:
+                selection = i
             else:
-                print(f"You do not currently have a(n) {i.name} in your inventory.")
+                continue
+        if selection != None:
+            self.inventory.remove(selection)
+            self.location.drop_item(selection)
+            selection.on_drop()
+        else:
+            print(f"You do not currently have {item} in your inventory.")

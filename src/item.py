@@ -3,12 +3,6 @@ class Item():
         self.name = name
         self.description = description
 
-    def __eq__(self, other):
-        return self.name == other.name
-
-    def __ne__(self, other):
-        return self.name != other.name
-
     def __str__(self):
         return f"{self.name} - {self.description}"
 
@@ -16,5 +10,5 @@ class Item():
         print(f"You have picked up {self.name}")
 
     def on_drop(self):
-        print(f"You have dropped up {self.name}")
+        print(f"You have dropped {self.name}")
 

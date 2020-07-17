@@ -7,7 +7,8 @@ from item import Item
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons",
-                     [Item("stick", "It's a stick.")]),
+                     [Item("Stick", "It's a stick..."),
+                      Item("Rock", "What did you expect, it's a rock.")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
